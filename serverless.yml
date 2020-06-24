@@ -1,0 +1,22 @@
+
+service: tech-news
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+
+functions:
+  tech-news:
+    handler: index.techNews
+    events:
+      - http:
+          path: /
+          method: POST
+          cors: true
+      - http:
+          path: /{proxy+}
+          method: POST
+          cors: true
+
+plugins:
+  - serverless-offline
